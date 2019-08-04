@@ -13,13 +13,20 @@ def register():
  
     global username
     global password
+    global email
     global username_entry
     global password_entry
+    global email_entry
     username = StringVar()
     password = StringVar()
+    email = StringVar()
  
     Label(register_screen, text="Please enter the details below", bg="lightblue",font=("Calibri", 15)).pack()
     Label(register_screen, text="").pack()
+    email_lable = Label(register_screen, text ="Email Address",bg="lightblue",font=("Calibri", 13))
+    email_lable.pack()
+    email_entry = Entry(register_screen, textvariable=email)
+    email_entry.pack()
     username_lable = Label(register_screen, text="Username",bg="lightblue",font=("Calibri", 13))
     username_lable.pack()
     username_entry = Entry(register_screen, textvariable=username)
@@ -66,14 +73,17 @@ def register_user():
  
     username_info = username.get()
     password_info = password.get()
+    email_info = email.get()
  
     file = open(username_info, "w")
     file.write(username_info + "\n")
-    file.write(password_info)
+    file.write(password_info + "\n")
+    file.write(email_info)
     file.close()
  
-    username_entry.delete(0, END)
-    password_entry.delete(0, END)
+    username_entry.delete(0,END)
+    password_entry.delete(0,END)
+    email_entry.delete(0,END)
  
     Label(register_screen, text="Registration Success", fg="green", font=("calibri", 11)).pack()
  
